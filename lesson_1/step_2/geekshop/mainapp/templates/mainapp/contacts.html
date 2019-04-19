@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Контакты</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo"><img src="/static/img/Logo.jpg" alt="Logo"> ПК"Новый шлейф"
+            </div>
+            <ul class="menu">
+                <li><a href="/">Главная</a> </li>
+                <li><a href="/products/">Каталог</a></li>
+                <li> <a href="#"> Контакты </a> </li>
+            </ul>
+            <hr>
+        </div>
+    </div>
+    <h1>
+        <p class="conthead">Напишите нам</p>
+    </h1>
+    <form action="#">
+        <ol class="messege">
+            <li>
+                <label for="name"> Ваше имя:</label>
+                <input class="inputcont" id="name" type="text" placeholder="Ваше имя"> </li>
+            <li>
+                <label for="email"> Email:</label>
+                <input class="inputcont" id="email" type="text" placeholder="Email"> </li>
+            <li>
+                <label for="tema"> Тема обращения:</label>
+                <input class="inputcont" id="tema" type="text" placeholder="Тема"> </li>
+            <li>
+                <label for="pole"> Изложите суть обращения:</label>
+                <textarea class="areatcont" id="pole"> </textarea>
+            </li>
+            <li>
+                <p>Вы согласны на обработку персональных данных?</p>
+                <label for="da">Да</label>
+                <input type="radio" name="pol" checked id="da" class="check">
+                <label for="no">Нет</label>
+                <input type="radio" name="pol" class="check" id="no">
+            </li>
+        </ol>
+        <br>
+        <input class="button" type="submit" value="Отправить обращение">
+        <input class="button" type="reset" value="Отмена">
+    </form>
+    <h2 class="conthead">Наш адрес:</h2>
+    <ul class="messege">
+        <li>Контактный телефон: +7 (495) 665-67-23</li>
+        <li>Адрес: 141231, г. Москва, ул, Новоясеньская, д. 15А. стр 1</li>
+        <li>Наш Email: newsh@gmail.com</li>
+        <li>Наше местоположение на карте</li>
+    </ul>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d444.5338128992555!2d37.648974359162075!3d55.839934018668714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sru!4v1542219419542" width="100%" height="374" frameborder="0" style="border:0"  allowfullscreen></iframe>
+    <div class="footer">
+        Copyright &copy; by Dmitry Gushchin. Все права защищены
+    </div>
+</body>
+
+</html>
