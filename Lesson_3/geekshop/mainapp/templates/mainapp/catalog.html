@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+
+<html lang="en">
+{% block title %}
+       {{catalog|title}}
+{% endblock %}
+<body>
+{% block menu %}
+    {% include 'mainapp/includes/inc_menu.html' %}
+{% endblock %}
+
+
+{% block content %}
+{% include 'mainapp/includes/inc_categories_menu.html' %}
+   <div class="container_mini_catalog">
+        <h1 class="namecatalog">Каталог товаров</h1>
+        <div class="catalig_img_list">
+            {%for product in products %}
+
+                <div class="cont_img">
+                    <img src={{product.image.url}} alt="{{product.name}}">
+
+                    <a href="{% url '2080ti' %}"> {{product.short_desc}} </a>
+
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+</body>
+</html>
