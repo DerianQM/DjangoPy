@@ -17,6 +17,7 @@
 {% include 'mainapp/includes/inc_categories_menu.html' %}
    <div class="container_mini_catalog">
         <h1 class="namecatalog">Каталог товаров</h1>
+       <h1 class="namecatalog"> Количество товаров в корзине {{basket_quantity}} </h1>
         <div class="catalig_img_list">
             {%for product in products %}
 
@@ -24,7 +25,9 @@
                     <img src={{product.image.url}} alt="{{product.name}}">
 
                     <a href="{% url '2080ti' %}"> {{product.short_desc}} </a>
-
+                    <a href="{% url 'basket:add' product.pk %}"> Добавить в корзину</a>
+                    <br>
+                    <a href="{% url 'basket:delete' product.pk %}"> Удалить из корзины</a>
                 </div>
 
             {% endfor %}

@@ -32,9 +32,7 @@ body {
     color: #00CED1;
 
 }
-.active{
-    background-color: blue;
-}
+
 
 .catalog {
     list-style-type: none;
@@ -325,8 +323,8 @@ h3 {
     border-bottom: 1px solid #b5b7ba;
     background-color: #A9A9A9;
     margin: 0 auto;
-    weight: 150px;
-    height: 140px;
+    weight: 180px;
+    height: 450px;
     text-align: left;
     margin-top: 20px;
     padding-top: 20 px;
@@ -336,7 +334,7 @@ h3 {
 .menu_categories li {
     color: #4d4d4d;
     font-size: 20px;
-    font-weight: 180;
+    font-weight: 200px;
 
     text-decoration: none;
     height: 30px;
@@ -350,9 +348,15 @@ h3 {
     color: #00CED1;
 
 }
-.active{
+.active {
     background-color: blue;
 }
+
+
+.active {
+    background-color: blue;
+}
+
 
 .form-control{
 

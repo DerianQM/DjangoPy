@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import ProductCategory, Product
-
+from basketapp.models import BasketSlot
 
 
 
@@ -14,11 +14,18 @@ def main(request):
     
 
 def products(request, pk=None):
-    if pk==None:
-        context = {'products': Product.objects.all(),'productsCategory': ProductCategory.objects.all(),'catalog': 'каталог товаров'}
-    else:
+    basket = []
+    if request.user.is_authenticated:
+        basket = BasketSlot.objects.filter(user=request.user)
+    total_quantity = sum(list(map(lambda basket_slot: basket_slot.quantity, basket)))
+    if pk:
+        get_object_or_404(ProductCategory, pk=pk)
         context = {'products': Product.objects.filter(category=pk), 'productsCategory': ProductCategory.objects.all(),
-                   'catalog': 'каталог товаров'}
+                   'catalog': 'каталог товаров','basket_quantity': total_quantity}
+    else:
+        context = {'products': Product.objects.all(), 'productsCategory': ProductCategory.objects.all(),
+                   'catalog': 'каталог товаров', 'basket_quantity': total_quantity}
+
     return render(request, 'mainapp/catalog.html', context)
     
 
