@@ -1,0 +1,26 @@
+[
+  {
+    "category": "Videocards",
+    "name": "2080ti",
+    "price": 1200,
+    "quantity": 76
+  },
+  {
+    "category": "Videocards",
+    "name": "2080",
+    "price": 1000,
+    "quantity": 35
+  },
+  {
+    "category": "Videocards",
+    "name": "2070",
+    "price": 867,
+    "quantity": 12
+  },
+    {
+    "category": "Socket",
+    "name": "i7-7700k",
+    "price": 576,
+    "quantity": 77
+  }
+]
