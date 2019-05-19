@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+{% load custom_tags %}
+<html lang="en">
+{% block title %}
+       {{catalog|title}}
+{% endblock %}
+<body>
+{% block menu %}
+    {% include 'mainapp/includes/inc_menu.html' %}
+{% endblock %}
+
+
+{% block content %}
+{% include 'mainapp/includes/inc_categories_menu.html' %}
+   <div class="container_mini_catalog">
+        <h1 class="namecatalog">Каталог товаров</h1>
+       <h1 class="namecatalog"> Количество товаров в корзине {{ request.user| basket_total_quantity}} </h1>
+       <h1 class="namecatalog"> Общая сумма {{ request.user| basket_total_cost}} EUR</h1>
+        <div class="catalig_img_list">
+               <div class="cont_img">
+                    <img src={{hot_product.image.url}} alt="{{hot_product.name}}">
+
+                    <a href="{% url '2080ti' %}"> {{hot_product.short_desc}} </a>
+                    <br>
+                    <br>
+                   <h1 style = "color:red"> НАИГОРЯЧЕЙШЕЕ ПРЕДЛОЖЕНИЕ</h1>
+                   <div style = "color:red"> Товара осталось крайне мало, спешите потратить ваши деньги</div>
+                    <a href="{% url 'basket:add' hot_product.pk %}"> Добавить в корзину</a>
+                    <br>
+                    <a href="{% url 'basket:delete' hot_product.pk %}"> Удалить из корзины</a>
+                </div>
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+</body>
+</html>

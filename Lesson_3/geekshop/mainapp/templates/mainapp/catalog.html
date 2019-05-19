@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+{% load custom_tags %}
+<html lang="en">
+{% block title %}
+       {{catalog|title}}
+{% endblock %}
+<body>
+{% block menu %}
+    {% include 'mainapp/includes/inc_menu.html' %}
+{% endblock %}
+
+
+{% block content %}
+{% include 'mainapp/includes/inc_categories_menu.html' %}
+   <div class="container_mini_catalog">
+        <h1 class="namecatalog">Каталог товаров</h1>
+       <h1 class="namecatalog"> Количество товаров в корзине {{ request.user| basket_total_quantity}} </h1>
+       <h1 class="namecatalog"> Общая сумма {{ request.user| basket_total_cost}} EUR</h1>
+        <div class="catalig_img_list">
+            {%for product in products %}
+
+                <div class="cont_img">
+                    <img src={{product.image.url}} alt="{{product.name}}">
+
+                    <a href="#"> {{product.short_desc}} </a>
+                    <br>
+                    <br>
+                    <a href="{%  url 'products:product' product.pk %}"> Добавить в корзину</a>
+                    <br>
+                    <a href="{% url 'basket:delete' product.pk %}"> Удалить из корзины</a>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+</body>
+</html>
