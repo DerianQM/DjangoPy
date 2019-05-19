@@ -20,20 +20,20 @@
        <h1 class="namecatalog"> Количество товаров в корзине {{ request.user| basket_total_quantity}} </h1>
        <h1 class="namecatalog"> Общая сумма {{ request.user| basket_total_cost}} EUR</h1>
         <div class="catalig_img_list">
-            {%for product in products %}
+               <div class="cont_img">
+                    <img src={{hot_product.image.url}} alt="{{hot_product.name}}">
 
-                <div class="cont_img">
-                    <img src={{product.image.url}} alt="{{product.name}}">
-
-                    <a href="#"> {{product.short_desc}} </a>
+                    <a href="{% url '2080ti' %}"> {{hot_product.short_desc}} </a>
                     <br>
                     <br>
-                    <a href="{%  url 'products:product' product.pk %}"> Добавить в корзину</a>
+                   <h1 style = "color:red"> НАИГОРЯЧЕЙШЕЕ ПРЕДЛОЖЕНИЕ</h1>
+                   <div style = "color:red"> Товара осталось крайне мало, спешите потратить ваши деньги</div>
+                    <a href="{% url 'basket:add' hot_product.pk %}"> Добавить в корзину</a>
                     <br>
-                    <a href="{% url 'basket:delete' product.pk %}"> Удалить из корзины</a>
+                    <a href="{% url 'basket:delete' hot_product.pk %}"> Удалить из корзины</a>
                 </div>
 
-            {% endfor %}
+
         </div>
     </div>
 

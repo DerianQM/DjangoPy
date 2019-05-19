@@ -8,19 +8,23 @@ from authapp.forms import ShopUserRegisterForm
 from authapp.forms import ShopUserEditForm
 
 def login(request):
+
     title = 'вход'
 
     login_form = ShopUserLoginForm(data=request.POST)
     if request.method == 'POST' and login_form.is_valid():
         username = request.POST['username']
         password = request.POST['password']
-
+        next = request.POST['next']
         user = auth.authenticate(username=username, password=password)
         if user and user.is_active:
             auth.login(request, user)
-            return HttpResponseRedirect(reverse('main'))
+            if next == 'None':
+                return HttpResponseRedirect(reverse('main'))
+            else:
+                return HttpResponseRedirect(next)
 
-    context = {'title': title, 'login_form': login_form}
+    context = {'title': title, 'login_form': login_form, 'next': request.GET.get('next')}
     return render(request, 'authapp/login.html', context)
 
 

@@ -6,7 +6,7 @@ from basketapp.models import BasketSlot
 
 
 context = {'main': 'главная', 'contacts': 'контакты', '2070_gtx': 'видеокарта 2070 GTX',
-           '2080_gtx': 'видеокарта 2080 GTX', }
+          '2080_gtx': 'видеокарта 2080 GTX', }
 
 
 def main(request):
@@ -14,19 +14,20 @@ def main(request):
     
 
 def products(request, pk=None):
-    basket = []
-    if request.user.is_authenticated:
-        basket = BasketSlot.objects.filter(user=request.user)
-    total_quantity = sum(list(map(lambda basket_slot: basket_slot.quantity, basket)))
-    if pk:
-        get_object_or_404(ProductCategory, pk=pk)
-        context = {'products': Product.objects.filter(category=pk), 'productsCategory': ProductCategory.objects.all(),
-                   'catalog': 'каталог товаров','basket_quantity': total_quantity}
-    else:
-        context = {'products': Product.objects.all(), 'productsCategory': ProductCategory.objects.all(),
-                   'catalog': 'каталог товаров', 'basket_quantity': total_quantity}
+    if pk or pk == 0:
+        product_objects = Product.objects.all()
+        if pk:
+            get_object_or_404(ProductCategory, pk=pk)
+            product_objects = Product.objects.filter(category=pk)
+        context = {'products': product_objects, 'productsCategory': ProductCategory.objects.all(),
+                   'catalog': 'каталог товаров', }
+        return render(request, 'mainapp/catalog.html', context)
 
-    return render(request, 'mainapp/catalog.html', context)
+    else:
+        hot_product = Product.objects.filter(is_hot=True).first()
+        context = {'hot_product': hot_product, 'productsCategory': ProductCategory.objects.all(),
+                   'catalog': 'каталог товаров', }
+        return render(request, 'mainapp/hot_product.html', context)
     
 
 def contact(request):
@@ -45,3 +46,24 @@ def page_2080(request):
 
 def page_2070(request):
     return render(request, 'mainapp/catalog/2070.html', context)
+
+
+def get_basket(user):
+    if user.is_authenticated:
+        return BasketSlot.objects.filter(user=user)
+    else:
+        return []
+
+
+
+def product(request, pk):
+    title = 'продукты'
+
+    content = {
+        'title': title,
+        'links_menu': ProductCategory.objects.all(),
+        'product': get_object_or_404(Product, pk=pk),
+        'basket': get_basket(request.user),
+    }
+
+    return render(request, 'mainapp/product.html', content)
