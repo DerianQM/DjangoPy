@@ -9,6 +9,11 @@
     </a>
 </li>
 {% endif %}
+{% if user.is_superuser %}
+    <li>
+      <a href="{% url 'admin_custom:users' %}">админка</a>
+    </li>
+{% endif %}
 <li>
     {% if request.user.is_anonymous %}
         <a href="{% url 'auth:login' %}"> Войти </a> или <a href="{% url 'auth:register' %}"> Зарегестрироваться</a>
@@ -16,6 +21,7 @@
     {% if request.user.is_authenticated %}
         <a href="{% url 'auth:logout' %}"> Выйти </a>
     {% endif %}
+
 </li></li>
 </ul>
 

@@ -375,3 +375,10 @@ h3 {
     text-align: center;
     font-family: cursive;
 }
+
+.user_recordnot_active {
+    text-align:top;
+    border: 4px double black;
+    opacity: 0,5
+
+}
