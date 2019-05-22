@@ -1,0 +1,17 @@
+
+<ul class="menu_categories">
+    <li>
+         <a href="{% url 'admin_custom:products' %}" class="{% if products.kwargs.pk == 0 %} active
+                {% endif %} ">
+             Все товары </a>
+    </li>
+    {% for category in categories %}
+        <li>
+            <a href="{% url 'admin_custom:products_by_category' category.pk %}" class="{% if products_by_category.kwargs.pk == category.pk %} active
+                {% endif %} ">
+
+             {{ category.name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
