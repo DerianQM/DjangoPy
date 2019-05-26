@@ -11,20 +11,23 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+from configparser import  RawConfigParser
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(BASE_DIR)
+local_config_path = os.path.join(BASE_DIR,'conf','local.conf')
+config = RawConfigParser()
+config.read(local_config_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'bsxn28ba%iuykbh@2irgw2f7%7-n2l4p@!ziy)rbw#h@v!o8y%'
+SECRET_KEY = config.get('main','SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config.getboolean('main', 'DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'authapp.apps.AuthappConfig',
     'basketapp.apps.BasketappConfig',
     'adminapp.apps.AdminappConfig',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +56,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1'
 ]
 
 ROOT_URLCONF = 'geekshop.urls'

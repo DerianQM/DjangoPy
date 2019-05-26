@@ -13,7 +13,7 @@ class BasketSlot(models.Model):
     created = models.DateTimeField(verbose_name='создано', auto_now_add=True)
 
     def __str__(self):
-        return self.user.name + '-' + self.product.name
+        return self.user.username + '-' + self.product.name
 
     @property
     def product_cost(self):
