@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+<div class="catalig_img_list">
+    <div class="cont_img">
+        <img src="/media/{{ object.image }}"
+             alt="{{ object.short_desc }}">
+        <br>
+        <span class="category_name"> Категория товара {{ object.category.name }}</span>
+        <br>
+        <span class="product_name"> Наименование товара {{ object.name }}</span>
+        <br>
+        <span class="product_price"> Цена за штуку {{ object.price }}&nbspeur</span>
+        <br>
+
+    </div>
+    <a href="{% url 'admin_custom:product_update' object.pk %}"> Редактировать</a>
+    </div>
+    <br>
+<a href="{% url 'admin_custom:product_delete' object.pk %}"> Удалить </a>
+<br>
+<a href="{% url 'admin_custom:products' %}"> Ко всем продуктам </a>
+</body>
+</html>

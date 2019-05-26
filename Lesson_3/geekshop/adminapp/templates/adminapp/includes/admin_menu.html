@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню админа</title>
+</head>
+<body>
+<ul>
+    <li><a href="{% url 'admin_custom:categories' %}">
+        Редактировать список категорий </a></li>
+
+<li><a href="{% url 'admin_custom:users' %}">Редактировать список пользователей</a></li>
+<li><a href="{% url 'admin_custom:products' %}">Редактировать список продуктов</a></li>
+
+</ul>
+</body>
+</html>

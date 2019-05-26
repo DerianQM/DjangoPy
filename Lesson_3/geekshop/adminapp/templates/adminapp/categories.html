@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+</head>
+{% block menu %}
+    {% include 'adminapp/includes/admin_menu.html' %}
+{% endblock %}
+<body>
+
+{% block content %}
+  <div class="categories_list">
+
+    <br>
+    <br>
+    <h1>Список категорий </h1>
+    {% for object in object_list %}
+      <div class="category_record">
+        <b class="category_name">
+          {{ object.name|title }}
+        </b>
+        <div class="category_desc">
+          {{ object.description|title }}
+        </div>
+        <div class="category_actions">
+
+          <button>
+            <a href={% url 'admin_custom:category_update' object.pk %}>
+              редактировать
+            </a>
+          </button>
+          <button>
+            <a href={% url 'admin_custom:category_delete' object.pk %}>
+              удалить
+            </a>
+          </button>
+        </div>
+      <br>
+      <br>
+
+      </div>
+    {% endfor%}
+
+      <button class="new_category">
+      <a href={% url 'admin_custom:category_create' %}>
+        Создать новую категорию
+      </a>
+    </button>
+  </div>
+
+{% endblock %}
+</body>
+</html>
