@@ -1,0 +1,6 @@
+django==2.2
+django-debug-toolbar==1.11
+ipython==7.5.0
+mainapp==0.1
+pillow==6.0.0
+pip-chill==0.1.8
